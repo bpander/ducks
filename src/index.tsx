@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { createStore, applyMiddleware, Store, AnyAction } from 'redux';
+import { Provider } from 'react-redux';
+import thunk, { ThunkDispatch } from 'redux-thunk';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from 'App';
+import { root, RootState } from 'ducks/rootDuck';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import 'index.css';
+
+type ThunkStore<T> = Store<T> & { dispatch: ThunkDispatch<RootState, {}, AnyAction> };
+
+const store = createStore(root.reducer, applyMiddleware(thunk)) as ThunkStore<RootState>;
+store.dispatch(root.nested.thing.addTodo('nested one'));
+store.dispatch(root.thing.addTodo('one'));
+store.dispatch(root.thing.addTodo('two'));
+console.log(store.getState());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
