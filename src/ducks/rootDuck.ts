@@ -1,11 +1,11 @@
-import { combineDucks, ExtractState } from 'lib/ducks';
 import { todoDuck } from 'ducks/todoDuck';
+import { combineDucks, ExtractState } from 'lib/ducks';
 
 export const root = combineDucks({
-  thing: todoDuck(),
+  thing: todoDuck,
   nested: combineDucks({
-    thing: todoDuck('SOME_ACTION_PREFIX'),
+    thing: todoDuck,
   }),
-})(s => s);
+})('', s => s);
 
 export type RootState = ExtractState<typeof root>;

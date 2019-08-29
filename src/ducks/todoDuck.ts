@@ -2,17 +2,19 @@ import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import { createReducer } from 'lib/createReducer';
-import { duck } from 'lib/ducks';
+import { GetBranch } from 'lib/ducks';
 
 export type Todo = { id: string; description: string; complete: boolean }
 export type TodoState = { list: Todo[] }
 
 export const emptyTodoState: TodoState = { list: [] };
 
-export const todoDuck = (prefix = 'TODO') => {
+export const todoDuck = (prefix: string, getBranch: GetBranch<TodoState>) => {
   const { update, reducer } = createReducer(prefix + '/UPDATE', emptyTodoState);
 
-  return duck(reducer, getBranch => ({
+  return {
+    reducer,
+
     addTodo: <S>(description: string): ThunkAction<void, S, {}, AnyAction> => (dispatch, getState) => {
       const state = getBranch(getState());
       const todo: Todo = {
@@ -25,5 +27,5 @@ export const todoDuck = (prefix = 'TODO') => {
     },
 
     getCompleted: <S>(state: S) => getBranch(state).list.filter(t => t.complete).length,
-  }));
+  };
 };
