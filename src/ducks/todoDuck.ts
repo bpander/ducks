@@ -23,5 +23,7 @@ export const todoDuck = (prefix = 'TODO') => {
       const list = [ ...getBranch(getState()).list, todo ];
       dispatch(update({ list }));
     },
+
+    getCompleted: <S>(state: S) => getBranch(state).list.filter(t => t.complete).length,
   }));
 };

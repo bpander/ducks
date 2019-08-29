@@ -16,6 +16,8 @@ store.dispatch(root.nested.thing.addTodo('nested one'));
 store.dispatch(root.thing.addTodo('one'));
 store.dispatch(root.thing.addTodo('two'));
 console.log(store.getState());
+console.log(root.nested.thing.getCompleted(store.getState()));
+console.log(root.thing.getCompleted(store.getState()));
 
 ReactDOM.render(
   <Provider store={store}>
