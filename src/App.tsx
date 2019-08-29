@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import './lib/ducks';
+
 const App: React.FC = () => {
   return (
     <div className="App">
