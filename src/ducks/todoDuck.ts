@@ -38,6 +38,8 @@ export const todoDuck = (prefix: string, getBranch: <S>(rootState: S) => TodoSta
       dispatch(update({ list }));
     },
 
+    setTitle: (title: string) => update({ title }),
+
     getCompleted: <S>(state: S) => getBranch(state).list.filter(t => t.complete).length,
   };
 };
