@@ -8,6 +8,7 @@ import { Todo, TodoDuck } from 'ducks/todoDuck';
 export interface TodoListProps {
   title: string;
   list: Todo[];
+  numComplete: number;
   addTodo: (description: string) => void;
   toggleComplete: (todo: Todo) => void;
   remove: (todo: Todo) => void;
@@ -41,6 +42,7 @@ export const TodoList: React.FC<TodoListProps> = props => {
           </div>
         </div>
       </form>
+      <div>{props.numComplete} completed</div>
       <table className="todo-list__table">
         <thead>
           <tr>
@@ -76,6 +78,7 @@ const mapStateToProps = (rootState: any, ownProps: OwnProps) => {
   return {
     title: todoListState.title,
     list: todoListState.list,
+    numComplete: ownProps.todoDuck.getCompleted(rootState).length,
   };
 };
 

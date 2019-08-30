@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { createSelector } from 'reselect';
 
 import { createReducer } from 'lib/createReducer';
 
@@ -40,7 +41,13 @@ export const todoDuck = (prefix: string, getBranch: <S>(rootState: S) => TodoSta
 
     setTitle: (title: string) => update({ title }),
 
-    getCompleted: <S>(state: S) => getBranch(state).list.filter(t => t.complete).length,
+    getCompleted: createSelector(
+      <S>(state: S) => getBranch(state).list,
+      list => {
+        console.log('getCompleted selector recalculated', prefix);
+        return list.filter(t => t.complete);
+      },
+    ),
   };
 };
 
