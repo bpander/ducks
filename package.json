@@ -1,5 +1,6 @@
 {
   "name": "ducks",
+  "homepage": "https://bpander.github.io/ducks/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

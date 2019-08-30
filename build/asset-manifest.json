@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ducks/build/static/css/main.720834b4.chunk.css",
+    "main.js": "/ducks/build/static/js/main.331422a5.chunk.js",
+    "main.js.map": "/ducks/build/static/js/main.331422a5.chunk.js.map",
+    "runtime~main.js": "/ducks/build/static/js/runtime~main.86ad17e6.js",
+    "runtime~main.js.map": "/ducks/build/static/js/runtime~main.86ad17e6.js.map",
+    "static/js/2.0d001cb9.chunk.js": "/ducks/build/static/js/2.0d001cb9.chunk.js",
+    "static/js/2.0d001cb9.chunk.js.map": "/ducks/build/static/js/2.0d001cb9.chunk.js.map",
+    "index.html": "/ducks/build/index.html",
+    "precache-manifest.848fdfe7031c08688410e5124a1888ea.js": "/ducks/build/precache-manifest.848fdfe7031c08688410e5124a1888ea.js",
+    "service-worker.js": "/ducks/build/service-worker.js",
+    "static/css/main.720834b4.chunk.css.map": "/ducks/build/static/css/main.720834b4.chunk.css.map"
+  }
+}
