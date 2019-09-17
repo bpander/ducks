@@ -6,11 +6,11 @@ interface Dictionary<T> {
 }
 
 export const keyedSubStates = <M extends { [key: string]: DuckCreator<any> }>(map: M) => {
-  return  (prefix: string, getBranch: (rootState: any) => Dictionary<ExtractState<M>>) => {
+  return (prefix: string, getBranch: (rootState: any) => Dictionary<{ [K in keyof M]: ExtractState<ReturnType<M[K]>>}>) => {
     const duckCreator = combineDucks(map);
     const subStateDuck = duckCreator('', s => s);
 
-    const reducer: Reducer<Dictionary<{ [K in keyof M]: ReturnType<M[K]> }>> = (state = {}, action) => {
+    const reducer: Reducer<Dictionary<{ [K in keyof M]: ExtractState<ReturnType<M[K]>> }>> = (state = {}, action) => {
       if (action.type.startsWith(prefix)) {
         const [ , key, childAction ] = action.type.replace(prefix, '').split(/\./);
         const subState = subStateDuck.reducer(state[key] as any, { ...action, type: '.' + childAction });
